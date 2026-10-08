@@ -1,0 +1,19 @@
+package com.intellipaat.course
+
+import android.content.Context
+import com.intellipaat.course.data.local.AppDatabase
+import com.intellipaat.course.data.remote.ConnectivityChecker
+import com.intellipaat.course.data.remote.FakeCourseApi
+import com.intellipaat.course.data.repository.CourseRepository
+
+/** Manual dependency injection: builds every long-lived object once, for the whole app. */
+class AppContainer(context: Context) {
+
+    private val database = AppDatabase.create(context.applicationContext)
+
+    private val connectivityChecker = ConnectivityChecker(context)
+
+    private val courseApi = FakeCourseApi(isOnline = connectivityChecker::isOnline)
+
+    val courseRepository = CourseRepository(courseApi, database.courseDao())
+}
