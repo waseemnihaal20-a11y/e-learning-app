@@ -19,9 +19,6 @@ interface CourseDao {
     @Query("SELECT * FROM courses WHERE id = :courseId")
     fun observeCourse(courseId: Int): Flow<CourseWithLessons?>
 
-    @Query("SELECT * FROM lessons WHERE courseId = :courseId ORDER BY id")
-    fun observeLessons(courseId: Int): Flow<List<LessonEntity>>
-
     // Upsert updates existing rows in place. REPLACE would delete and re-insert
     // the course, and the CASCADE foreign key would wipe its lessons.
     @Upsert
@@ -40,7 +37,4 @@ interface CourseDao {
 
     @Query("UPDATE lessons SET isCompleted = :isCompleted WHERE id = :lessonId")
     suspend fun updateLessonCompleted(lessonId: Int, isCompleted: Boolean)
-
-    @Query("SELECT COUNT(*) FROM courses")
-    suspend fun courseCount(): Int
 }

@@ -19,19 +19,6 @@ fun CourseWithLessons.toDomain(): Course = Course(
     lessons = lessons.sortedBy { it.id }.map { it.toDomain() },
 )
 
-fun Lesson.toEntity(): LessonEntity = LessonEntity(
-    id = id,
-    courseId = courseId,
-    title = title,
-    isCompleted = isCompleted,
-)
-
-fun Course.toEntity(): CourseEntity = CourseEntity(
-    id = id,
-    title = title,
-    instructor = instructor,
-)
-
 fun CourseDto.toEntity(): CourseEntity = CourseEntity(
     id = id,
     title = title,

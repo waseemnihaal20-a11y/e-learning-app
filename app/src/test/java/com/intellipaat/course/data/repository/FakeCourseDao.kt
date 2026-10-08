@@ -32,9 +32,6 @@ class FakeCourseDao : CourseDao {
     override fun observeCourse(courseId: Int): Flow<CourseWithLessons?> =
         observeCourses().map { list -> list.find { it.course.id == courseId } }
 
-    override fun observeLessons(courseId: Int): Flow<List<LessonEntity>> =
-        lessons.map { lessonMap -> lessonMap.values.filter { it.courseId == courseId }.sortedBy { it.id } }
-
     override suspend fun upsertCourses(courses: List<CourseEntity>) {
         this.courses.update { current -> current + courses.associateBy { it.id } }
     }
@@ -56,6 +53,4 @@ class FakeCourseDao : CourseDao {
             current + (lessonId to lesson.copy(isCompleted = isCompleted))
         }
     }
-
-    override suspend fun courseCount(): Int = courses.value.size
 }

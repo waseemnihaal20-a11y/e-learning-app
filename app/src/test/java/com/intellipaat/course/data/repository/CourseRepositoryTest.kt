@@ -73,7 +73,7 @@ class CourseRepositoryTest {
         val result = repository.refresh()
 
         assertFalse(result.isSuccess)
-        assertEquals(0, dao.courseCount())
+        assertTrue(repository.observeCourses().first().isEmpty())
         assertEquals(0, dao.saveCoursesCalls)
     }
 }
