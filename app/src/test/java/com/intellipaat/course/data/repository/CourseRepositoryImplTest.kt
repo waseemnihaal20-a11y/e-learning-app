@@ -9,11 +9,11 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 import java.io.IOException
 
-class CourseRepositoryTest {
+class CourseRepositoryImplTest {
 
     private var online = true
     private val dao = FakeCourseDao()
-    private val repository = CourseRepository(
+    private val repository = CourseRepositoryImpl(
         api = FakeCourseApi(isOnline = { online }, delayMillis = 0),
         dao = dao,
     )
