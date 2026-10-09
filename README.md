@@ -4,6 +4,8 @@ A small Android app that shows a learner's courses and lets them mark lessons as
 It was built as a time-boxed technical assignment, so the focus is architecture, state
 handling, offline support, error handling and tests, not UI polish.
 
+**Application walkthrough demo:** https://www.loom.com/share/9a11da1b09624d5eb47495f7f7fdaea4
+
 ## 1. Overview
 
 Three screens:
